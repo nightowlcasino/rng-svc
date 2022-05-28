@@ -2,6 +2,8 @@
 
 ## Diagram
 
+![image](docs/nightowl-RNG-Arch-rev2.png)
+
 ## Nightowl oracle scanner
 
 For the initial v0.1.0 release of Nightowl we'll be obtaining our random numbers from Ethereum block hashes. We will do this by attaching all Nightowl bets, *which are essentially ERG unspent output boxes*, at the time the bet tx was placed to the most recent ETH block hash. Then, we wait until 2 more ETH block hashes are created, take the first 4 bytes of the hash and use that for our random number of those placed bets. Nightowl is constantly rethinking how we'll utilize the bytes from the ETH hash to best fit our game designs. But for the Roulette and coin flip proof of concept games we are using the first 4 bytes for simplicity.
