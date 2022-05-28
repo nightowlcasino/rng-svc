@@ -123,7 +123,7 @@ https://<erg-node>/transactions/unconfirmed
 .
 ```
 
-This data is combined in a data structure where the the `Hash` is the Ethereum block hash and the `Boxes` are the ERG unspent output Box Id(s)
+This data is combined in a data structure where the `Hash` field is the Ethereum block hash and the `Boxes` slice are the ERG unspent output box Id bet(s)
 
 ```
 type CombinedHashes struct {
@@ -152,7 +152,7 @@ From the above example API calls, the data structure would look like,
 ]
 ```
 
-On a configurable cycle, initially 7 minutes, we take this combined hashes data structure and transform it into an ERG Tx. It will be sent to an oracle smart contract address and be formatted as seen below,
+On a configurable cycle, initially every 7 minutes, we take the combined hashes data structure and transform it into an ERG Tx. It will be sent to an oracle smart contract address and be formatted as seen below,
 
 `R4` will contain the Collection of ETH block hashes
 
@@ -192,9 +192,9 @@ R5: 0c1a01032082ba0563efda7f6b2c0af7368aeb845f21c02b4fd0f72aa2ac4a8ec955766ae020
 }
 ```
 
-## NATS publish/subscribe
+## RNG service
 
-In order to provide the user with the generated random number before it is officially written to the ERG blockchain we provide the combined hashes data to the user by using the NATS message queue. In this design the oracle scanner will publish every new combined hash data structure to the `eth.hash` subject and the RNG service application will be a subscriber.
+In order to provide the user with the generated random number before it is officially written to the ERG blockchain we provide the combined hashes data to the user by using the NATS publish/subscribe messaging queue. In this design the oracle scanner will publish every new combined hash data structure to the `eth.hash` subject and the RNG service application will be a subscriber.
 
 The RNG service app will act like a controller and provide an endpoint where it listens to frontend client requests and responds with a random number based on the game that requested it. The workflow will look like the following, if a user is playing roulette and submits a bet, it will get added the data structure as shown above. The RNG service will eventually get ETH hash and ERG bet box id from the NATS message queue. It then gets added to a hash map where the key is the box Id and the value is the random number.
 
