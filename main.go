@@ -243,17 +243,17 @@ func serializeErgBox(client *retryablehttp.Client, boxId string) (string, error)
 
   resp, err := client.Do(req)
   if err != nil {
-  	return bytes.Bytes, fmt.Errorf("error getting serializing erg box - %s", err.Error())
+    return bytes.Bytes, fmt.Errorf("error getting serializing erg box - %s", err.Error())
   }
 
   body, err := ioutil.ReadAll(resp.Body)
   if err != nil {
-  	return bytes.Bytes, fmt.Errorf("error parsing serialized erg box response - %s", err.Error())
+    return bytes.Bytes, fmt.Errorf("error parsing serialized erg box response - %s", err.Error())
   }
 
   err = json.Unmarshal(body, &bytes)
   if err != nil {
-  	return bytes.Bytes, fmt.Errorf("error unmarshalling serialized erg box response - %s", err.Error())
+    return bytes.Bytes, fmt.Errorf("error unmarshalling serialized erg box response - %s", err.Error())
   }
 
   return bytes.Bytes, nil
@@ -271,17 +271,17 @@ func getErgUtxoBox(client *retryablehttp.Client, boxId string) (ErgTxOutputNode,
 
   resp, err := client.Do(req)
   if err != nil {
-  	return utxo, fmt.Errorf("error getting erg utxo box - %s", err.Error())
+    return utxo, fmt.Errorf("error getting erg utxo box - %s", err.Error())
   }
 
   body, err := ioutil.ReadAll(resp.Body)
   if err != nil {
-  	return utxo, fmt.Errorf("error parsing erg utxo box response - %s", err.Error())
+    return utxo, fmt.Errorf("error parsing erg utxo box response - %s", err.Error())
   }
 
   err = json.Unmarshal(body, &utxo)
   if err != nil {
-  	return utxo, fmt.Errorf("error unmarshalling erg utxo box response - %s", err.Error())
+    return utxo, fmt.Errorf("error unmarshalling erg utxo box response - %s", err.Error())
   }
 
   return utxo, nil
