@@ -245,7 +245,7 @@ https://api.ergoplatform.com/api/v1/addresses/4FC5xSYb7zfRdUhm6oRmE11P2GJqSMY8UA
 
 2.) Loop through all the ERG Box Ids from the `R5` register of the oracle tx(s) and check what game the bet was made for and whether the house or player won the bet based on the random number from the `R4` register value. The smart contract is designed to only return `TRUE` if the real winner is trying to claim the funds. One should only be able to claim their funds 1 time.
 
-#### Anatomy of the ERG result smart contract tx
+### Anatomy of the ERG result smart contract tx
 <br>
 
 **wallet address of winner**
